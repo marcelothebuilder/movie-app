@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="movieApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Movie app!</title>
+
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <div class="page-header">
+                    <h1>
+                        <a href="#/">MovieApp</a>
+                    </h1>
+                    <p class="lead">Awesome movie data.</p>
+                </div>
+                <div ng-controller="SearchController as search">
+                    <form class="form-inline-lg" ng-submit="search.search()">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="search.query">
+                            <span class="input-group-btn">
+                                <button type="button" name="button" class="btn btn-default" ng-click="search.search()">Go!</button>
+
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div ng-view></div>
+        </div>
+
+        <script src="../bower_components/angular/angular.js" charset="utf-8"></script>
+        <script src="../bower_components/angular-route/angular-route.js" charset="utf-8"></script>
+        <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js" charset="utf-8"></script>
+
+        <script src="movie-app/app.js" charset="utf-8"></script>
+        <script src="omdb/service.js" charset="utf-8"></script>
+        <script src="movie-app/search.controller.js" charset="utf-8"></script>
+        <script src="movie-app/results.controller.js" charset="utf-8"></script>
+    </body>
+</html>
