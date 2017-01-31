@@ -39,21 +39,21 @@ describe('Home controller', function() {
     });
 
     it('should be at the first movie if interval called callback 0 times', function() {
-        expect(vm.currentMovie.movieId).toEqual('tt0076751');
+        expect($this.currentMovie.movieId).toEqual('tt0076751');
     });
 
     it('should be at the second movie if interval called callback 1 times', function() {
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS);
-        expect(vm.currentMovie.movieId).toEqual('tt0076752');
+        expect($this.currentMovie.movieId).toEqual('tt0076752');
     });
 
     it('should be at the third movie if interval called callback 2 times', function() {
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS*2);
-        expect(vm.currentMovie.movieId).toEqual('tt0076753');
+        expect($this.currentMovie.movieId).toEqual('tt0076753');
     });
 
     it('should be at the first movie again if interval called callback 3 times', function() {
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS*3);
-        expect(vm.currentMovie.movieId).toEqual('tt0076751');
+        expect($this.currentMovie.movieId).toEqual('tt0076751');
     });
 });
