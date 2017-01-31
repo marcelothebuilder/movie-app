@@ -19,7 +19,7 @@
                 <div ng-controller="SearchController as search">
                     <form class="form-inline-lg" ng-submit="search.search()">
                         <div class="input-group">
-                            <input type="text" class="form-control" ng-model="search.query">
+                            <input type="text" class="form-control" ng-model="search.query" ng-change="search.searchInputChanged()">
                             <span class="input-group-btn">
                                 <button type="button" name="button" class="btn btn-default" ng-click="search.search()">Go!</button>
 
