@@ -18,7 +18,7 @@ describe('Search controller', function() {
     }));
 
     afterEach(function() {
-        $timeout.verifyNoPendingTasks();
+        expect($timeout.verifyNoPendingTasks).not.toThrow();
     });
 
     it('should redirect to the query results page for non-empty query', function() {
