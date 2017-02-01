@@ -12,9 +12,9 @@ describe('Home controller', function() {
     beforeEach(inject(function(_$q_, _PopularMovies_, _OmdbApi_) {
         spyOn(_PopularMovies_, 'get').and.callFake(function() {
             return _$q_.resolve([
-                'tt0076751',
-                'tt0076752',
-                'tt0076753'
+                'tt0176385',
+                'tt0110912',
+                'tt0119081'
             ]);
         });
 
@@ -40,21 +40,21 @@ describe('Home controller', function() {
     }));
 
     it('should be at the first movie if interval called callback 0 times', function() {
-        expect($this.currentMovie.imdbID).toEqual('tt0076751');
+        expect($this.currentMovie.imdbID).toEqual('tt0176385');
     });
 
     it('should be at the second movie if interval called callback 1 times', function() {
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS);
-        expect($this.currentMovie.imdbID).toEqual('tt0076752');
+        expect($this.currentMovie.imdbID).toEqual('tt0110912');
     });
 
     it('should be at the third movie if interval called callback 2 times', function() {
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS * 2);
-        expect($this.currentMovie.imdbID).toEqual('tt0076753');
+        expect($this.currentMovie.imdbID).toEqual('tt0119081');
     });
 
     it('should be at the first movie again if interval called callback 3 times', function() {
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS * 3);
-        expect($this.currentMovie.imdbID).toEqual('tt0076751');
+        expect($this.currentMovie.imdbID).toEqual('tt0176385');
     });
 });

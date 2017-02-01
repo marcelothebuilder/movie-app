@@ -16,12 +16,13 @@
         start();
 
         function start() {
-            popularMovies.get()
-                .then(function(popularMoviesIds_) {
-                    popularMoviesIds = popularMoviesIds_;
-                    populateMovieData();
-                    startRotateInterval();
-                });
+            // popularMovies.get()
+            //     .then(function(popularMoviesIds_) {
+            var popularMoviesIds_ = ['tt0176385', 'tt0110912', 'tt0119081'];
+            popularMoviesIds = popularMoviesIds_;
+            populateMovieData();
+            startRotateInterval();
+            // });
         }
 
         function cycleMovieIndex() {
@@ -34,7 +35,7 @@
         }
 
         function startRotateInterval() {
-            $interval(function () {
+            $interval(function() {
                 cycleMovieIndex();
                 populateMovieData();
             }, CHANGE_MOVIE_INTERVAL_MS);
