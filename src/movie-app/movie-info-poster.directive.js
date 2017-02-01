@@ -8,7 +8,7 @@
   function movieInfoPoster() {
       return {
           restrict: 'E',
-          templateUrl: 'src/movie-app/movie-info-poster.directive.html',
+          templateUrl: 'movie-app/movie-info-poster.directive.html',
           // template: '<div>{{info.Title}}</div>',
           replace: false,
           scope: {
