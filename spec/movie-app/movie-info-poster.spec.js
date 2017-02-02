@@ -40,6 +40,10 @@ describe('Movie info poster directive', function() {
         $rootScope.info = movieData;
         element = $compile('<movie-info-poster info="info"></movie-info-poster>')($rootScope);
         $rootScope.$digest();
-        expect(element.html().trim()).toBe('<div class="ng-binding">Event Horizon</div>');
+        expect(element.html().trim()).toContain(movieData.Title);
+        expect(element.html().trim()).toContain(movieData.Year);
+        expect(element.html().trim()).toContain(movieData.Poster);
+        expect(element.html().trim()).toContain(movieData.Metascore);
+        expect(element.html().trim()).toContain(movieData.imdbRating);
     });
 });
