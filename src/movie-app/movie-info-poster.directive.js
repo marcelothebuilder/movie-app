@@ -4,7 +4,7 @@
         .component('movieInfoPoster', {
             templateUrl: 'movie-app/movie-info-poster.directive.html',
             bindings: {
-                info: '='
+                info: '<'
             }
         });
 }());
