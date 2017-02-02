@@ -22,6 +22,7 @@
             });
 
         function clicked(simpleMovieData) {
+            if (simpleMovieData.fullData) return;
             OmdbApi.findById(simpleMovieData.imdbID)
                 .then(function(fullMovieData) {
                     simpleMovieData.fullData = fullMovieData;
