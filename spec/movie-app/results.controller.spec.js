@@ -77,4 +77,25 @@ describe('Results controller', function() {
 
         expect(ctrl.error).toBeDefined();
     });
+
+    it('should get the full movie data when clicking on an item', function() {
+        spyOn(OmdbApi, 'search').and.callFake(function() {
+            return $q.resolve(results.Search);
+        });
+
+        spyOn(OmdbApi, 'findById').and.callFake(function() {
+            return $q.resolve(results.Search[0]);
+        });
+
+        var ctrl = $controller('ResultsController', {
+            OmdbApi: OmdbApi
+        });
+        $rootScope.$apply();
+
+        ctrl.clicked(ctrl.results[0]);
+        $rootScope.$apply();
+
+        expect(OmdbApi.findById).toHaveBeenCalled();
+        expect(ctrl.results[0].fullData).not.toBeUndefined();
+    });
 });

@@ -11,6 +11,7 @@
         vm.query = $location.search().q;
 
         vm.results = [];
+        vm.clicked = clicked;
 
         OmdbApi.search(vm.query)
             .then(function(results) {
@@ -19,5 +20,14 @@
             .catch(function() {
                 vm.error = 'An error ocurred during the search';
             });
+
+        function clicked(simpleMovieData) {
+            OmdbApi.findById(simpleMovieData.imdbID)
+                .then(function(fullMovieData) {
+                    simpleMovieData.fullData = fullMovieData;
+                });
+        }
+
+
     }
 }());
