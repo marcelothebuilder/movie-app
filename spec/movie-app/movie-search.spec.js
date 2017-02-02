@@ -19,4 +19,10 @@ describe('movie search field component', function() {
         expect(element.html().trim()).toContain('input');
         expect(element.html().trim()).toContain('button');
     });
+
+    it('should have a placeholder with the text Search for a movie', function () {
+      var element = $compile('<movie-search></movie-search>')($rootScope);
+      $rootScope.$digest();
+      expect(element.html().trim()).toContain('placeholder="Search for a movie"');
+    });
 });
