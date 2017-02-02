@@ -16,17 +16,7 @@
                     </h1>
                     <p class="lead">Awesome movie data.</p>
                 </div>
-                <div ng-controller="SearchController as search">
-                    <form class="form-inline-lg" ng-submit="search.search()">
-                        <div class="input-group">
-                            <input type="text" class="form-control" ng-model="search.query" ng-change="search.searchInputChanged()">
-                            <span class="input-group-btn">
-                                <button type="button" name="button" class="btn btn-default" ng-click="search.search()">Go!</button>
-
-                            </span>
-                        </div>
-                    </form>
-                </div>
+                <movie-search></movie-search>
             </div>
 
         </div>
@@ -47,5 +37,6 @@
         <script src="movie-app/results.controller.js" charset="utf-8"></script>
         <script src="movie-app/home.controller.js" charset="utf-8"></script>
         <script src="movie-app/movie-info-poster.directive.js" charset="utf-8"></script>
+        <script src="movie-app/movie-search.directive.js" charset="utf-8"></script>
     </body>
 </html>

@@ -1,0 +1,8 @@
+<form class="form-inline-lg" ng-submit="vm.search()">
+    <div class="input-group">
+        <input type="text" class="form-control" ng-model="vm.query" ng-change="vm.searchInputChanged()">
+        <span class="input-group-btn">
+            <button type="button" name="button" class="btn btn-default" ng-click="vm.search()">Go!</button>
+        </span>
+    </div>
+</form>
