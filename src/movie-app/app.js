@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('movieApp', ['ui.bootstrap', 'ngRoute', 'omdb', 'movieCore']);
+    angular.module('movieApp', ['ui.bootstrap', 'ngRoute', 'omdb', 'movieCore', 'ngChrono']);
 
     angular.module('movieApp').config(configureRoutes);
 
