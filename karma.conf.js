@@ -20,6 +20,7 @@ module.exports = function(config) {
             'bower_components/angular-route/angular-route.js',
             'bower_components/angular-bootstrap/ui-bootstrap.js',
             'node_modules/angular-mocks/angular-mocks.js',
+            'src/**/module.js',
             'src/**/*.js',
             'spec/**/*.js',
             'src/**/*.html' // load html
