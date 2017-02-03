@@ -13,7 +13,7 @@
 
     function fromNow(Clock) {
         return function(date) {
-            if (!date) throw "provided date can't be undefined";
+            if (!date) return '';
             var isDate = date instanceof Date;
 
             if (typeof date === 'string') {

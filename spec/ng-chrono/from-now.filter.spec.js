@@ -8,16 +8,20 @@ describe('from now filter', function() {
         Clock = _Clock_;
     }));
 
-    it('should throw error when undefined', function() {
+    it('should not throw error when undefined', function() {
         expect(function() {
             fromNow(undefined);
-        }).toThrow();
+        }).not.toThrow();
     });
 
-    it('should throw error when null', function() {
+    it('should not throw error when null', function() {
         expect(function() {
             fromNow(null);
-        }).toThrow();
+        }).not.toThrow();
+    });
+
+    it('should return an empty string when provided date is undefined', function() {
+        expect(fromNow(null)).toBe('');
     });
 
     it("should return the provided value as output when it's not a date", function() {
