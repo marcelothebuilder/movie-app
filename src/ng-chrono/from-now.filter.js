@@ -9,6 +9,7 @@
     var A_MINUTE = A_SECOND * 60;
     var AN_HOUR = A_MINUTE * 60;
     var A_DAY = AN_HOUR * 24;
+    var A_MONTH = A_DAY * 30;
 
     function fromNow(Clock) {
         return function(date) {
@@ -35,14 +36,18 @@
             var daysDiff = computeDaysDiff(now, date);
             if (daysDiff && Math.abs(daysDiff) <= 30) return makeTime('day', daysDiff);
 
-            var monthDiff = now.getMonth() - date.getMonth();
-            if (monthDiff) return makeTime('month', monthDiff);
+            var monthDiff = computeMonthsDiff(now, date);
+            if (monthDiff && Math.abs(monthDiff) <= 11) return makeTime('month', monthDiff);
 
             var yearDiff = now.getFullYear() - date.getFullYear();
             if (yearDiff) return makeTime('year', yearDiff);
 
             return 'now';
         };
+    }
+
+    function computeMonthsDiff(dateOne, dateTwo) {
+        return Math.round(computeMsDiff(dateOne, dateTwo) / A_MONTH);
     }
 
     function computeSecondsDiff(dateOne, dateTwo) {

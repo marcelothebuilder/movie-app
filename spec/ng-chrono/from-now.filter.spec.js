@@ -141,6 +141,11 @@ describe('from now filter', function() {
         expect(fromNow('2016-11-05T00:00:00.000Z')).toContain("days");
     });
 
+    it('should return 10 years of diff between 10 Nov 1999 and 11 Nov 2009', function() {
+        bendTime('2009-11-11T10:00:00.000Z');
+        expect(fromNow('10 Sep 1999')).toBe("10 years ago");
+    });
+
     function bendTime(newTime) {
         spyOn(Clock, 'now').and.returnValue(TzDate(newTime));
     }
