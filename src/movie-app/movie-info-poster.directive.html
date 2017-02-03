@@ -1,12 +1,23 @@
 <div class="row">
     <div class="col-sm-4">
-      <img src="{{$ctrl.info.Poster}}" alt="{{$ctrl.info.Title}}" style="width: 100%">
+        <img src="{{$ctrl.info.Poster}}" alt="{{$ctrl.info.Title}}" style="width: 100%">
     </div>
     <div class="col-sm-8">
-        <h3>{{$ctrl.info.Title}} ({{$ctrl.info.Year}})</h3>
+        <h3>{{$ctrl.info.Title}}
+            ({{$ctrl.info.Year}})</h3>
         <p>{{$ctrl.info.Plot}}</p>
-        <p><strong>IMDB:</strong> {{$ctrl.info.imdbRating}}</p>
-        <p><strong>Metascore:</strong> {{$ctrl.info.Metascore}}</p>
-        <p><strong>Director:</strong> {{$ctrl.info.Director}}</p>
+        <p>
+            <strong>IMDB:</strong>
+            {{$ctrl.info.imdbRating}}</p>
+        <p>
+            <strong>Metascore:</strong>
+            {{$ctrl.info.Metascore}}</p>
+        <p>
+            <strong>Director:</strong>
+            {{$ctrl.info.Director}}</p>
+        <p>
+            <strong>Released:</strong>
+            {{$ctrl.info.Released}}
+            ({{$ctrl.info.Released | fromNow}})</p>
     </div>
 </div>

@@ -26,13 +26,16 @@ describe('Movie info poster directive', function() {
     var $rootScope;
 
     beforeEach(function () {
+        module('ngChrono');
         module('movieApp');
         module('templates');
     });
 
-    beforeEach(inject(function(_$compile_, _$rootScope_) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _Clock_) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
+
+        spyOn(_Clock_, 'now').and.returnValue(new angular.mock.TzDate(0, '1997-08-18T00:00:00.000Z'));
     }));
 
     it('should output expected html output for the provided movie info', function() {
@@ -45,5 +48,6 @@ describe('Movie info poster directive', function() {
         expect(element.html().trim()).toContain(movieData.Poster);
         expect(element.html().trim()).toContain(movieData.Metascore);
         expect(element.html().trim()).toContain(movieData.imdbRating);
+        expect(element.html().trim()).toContain('days ago');
     });
 });
