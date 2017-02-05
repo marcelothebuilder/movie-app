@@ -136,6 +136,24 @@ describe('Home controller', function() {
         expect($exceptionHandler.errors.length >= 1).toBeTruthy();
     });
 
+    it('should not cycle if there is no popular movie', function () {
+          mockGetPopularMovies([]);
+          $scope = $rootScope.$new();
+          $this = $controller('HomeController', {
+              $interval: $interval,
+              PopularMovies: PopularMovies,
+              OmdbApi: OmdbApi,
+              $scope: $scope
+          });
+          $rootScope.$apply();
+
+          var beforeFlush = angular.copy($this.currentMovie);
+
+          $interval.flush(CHANGE_MOVIE_INTERVAL_MS);
+
+          expect(beforeFlush).toEqual($this.currentMovie);
+    });
+
     function mockGetPopularMovies(result) {
         spyOn(PopularMovies, 'query').and.callFake(function(callback) {
             callback(result);
