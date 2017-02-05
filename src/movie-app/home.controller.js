@@ -3,9 +3,9 @@
     angular.module('movieApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['PopularMovies', '$interval', 'OmdbApi'];
+    HomeController.$inject = ['PopularMovies', '$interval', 'OmdbApi', '$scope'];
 
-    function HomeController(popularMovies, $interval, omdbApi) {
+    function HomeController(popularMovies, $interval, omdbApi, $scope) {
         var vm = this;
         var interval;
         var CHANGE_MOVIE_INTERVAL_MS = 5000;
@@ -35,7 +35,7 @@
         }
 
         function startRotateInterval() {
-            $interval(function() {
+            interval = $interval(function() {
                 cycleMovieIndex();
                 populateMovieData();
             }, CHANGE_MOVIE_INTERVAL_MS);
@@ -49,5 +49,9 @@
                     vm.currentMovie = movieData;
                 });
         }
+
+        $scope.$on('$destroy', function() {
+            $interval.cancel(interval);
+        });
     }
 }());
