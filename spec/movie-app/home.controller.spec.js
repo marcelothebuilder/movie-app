@@ -133,12 +133,12 @@ describe('Home controller', function() {
 
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS * 4);
 
-        expect($exceptionHandler.errors.length >= 2).toBeTruthy();
+        expect($exceptionHandler.errors.length >= 1).toBeTruthy();
     });
 
     function mockGetPopularMovies(result) {
-        spyOn(PopularMovies, 'get').and.callFake(function() {
-            return $q.resolve(result);
+        spyOn(PopularMovies, 'query').and.callFake(function(callback) {
+            callback(result);
         });
     }
 });

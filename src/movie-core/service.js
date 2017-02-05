@@ -21,6 +21,7 @@
             },
             query: {
                 method: 'GET',
+                isArray: true,
                 headers: {'authToken': token }
             },
             save: {
