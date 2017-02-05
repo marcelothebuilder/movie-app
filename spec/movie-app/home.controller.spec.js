@@ -1,5 +1,6 @@
 describe('Home controller', function() {
     var $this;
+    var $scope;
 
     var CHANGE_MOVIE_INTERVAL_MS = 5000;
 
@@ -26,10 +27,12 @@ describe('Home controller', function() {
     }));
 
     beforeEach(inject(function(_$controller_, _$interval_, _PopularMovies_, _OmdbApi_, _$rootScope_) {
+        $scope = _$rootScope_.$new();
         $this = _$controller_('HomeController', {
             $interval: _$interval_,
             PopularMovies: _PopularMovies_,
-            OmdbApi: _OmdbApi_
+            OmdbApi: _OmdbApi_,
+            $scope: $scope
         });
 
         _$rootScope_.$apply();
@@ -55,6 +58,12 @@ describe('Home controller', function() {
 
     it('should be at the first movie again if interval called callback 3 times', function() {
         $interval.flush(CHANGE_MOVIE_INTERVAL_MS * 3);
+        expect($this.currentMovie.imdbID).toEqual('tt0176385');
+    });
+
+    it('should clear the $interval when leaving the controller', function () {
+        $scope.$destroy();
+        $interval.flush(CHANGE_MOVIE_INTERVAL_MS);
         expect($this.currentMovie.imdbID).toEqual('tt0176385');
     });
 });
