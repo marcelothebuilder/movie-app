@@ -12,17 +12,17 @@ describe('Home page', function() {
             expect(movie.getText()).toMatch('Pokémon');
         });
     });
-    describe("after 6s", function () {
-      it('should show pulp fiction movie the current popular movie', function() {
-          browser.get('http://localhost:3000/#!/');
-
-          browser.sleep(6000);
-
-          var movie = element(by.css('movie-info-poster h3'));
-
-          var movieName;
-
-          expect(movie.getText()).toMatch('Pulp');
-      });
-    });
+    // describe("after 6s", function () {
+    //   it('should show pulp fiction movie the current popular movie', function() {
+    //       browser.get('http://localhost:3000/#!/');
+    //
+    //       browser.sleep(6000);
+    //
+    //       var movie = element(by.css('movie-info-poster h3'));
+    //
+    //       var movieName;
+    //
+    //       expect(movie.getText()).toMatch('Pulp');
+    //   });
+    // });
 });
