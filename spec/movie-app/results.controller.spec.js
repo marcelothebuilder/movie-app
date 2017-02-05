@@ -10,6 +10,9 @@ describe('Results controller', function() {
 
     beforeEach(module('omdb'));
     beforeEach(module('movieApp'));
+    beforeEach(module(function($exceptionHandlerProvider) {
+        $exceptionHandlerProvider.mode('log');
+    }));
 
     beforeEach(function populateResults() {
         results = {
@@ -38,12 +41,13 @@ describe('Results controller', function() {
         };
     });
 
-    beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _OmdbApi_, _$location_) {
+    beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _OmdbApi_, _$location_, _$exceptionHandler_) {
         $controller = _$controller_;
         $q = _$q_;
         $rootScope = _$rootScope_;
         OmdbApi = _OmdbApi_;
         $location = _$location_;
+        $exceptionHandler = _$exceptionHandler_;
     }));
 
     it('should load search results', function() {
@@ -70,7 +74,7 @@ describe('Results controller', function() {
 
     it('should have an error message set in case of search failure', function() {
         spyOn(OmdbApi, 'search').and.callFake(function() {
-            return $q.reject();
+            return $q.reject('Something went wrong');
         });
 
         var ctrl = $controller('ResultsController', {
@@ -78,8 +82,7 @@ describe('Results controller', function() {
         });
 
         $rootScope.$apply();
-
-        expect(ctrl.error).toBeDefined();
+        expect($exceptionHandler.errors.length > 0).toBeTruthy();
     });
 
     describe('when clicking on an item', function() {

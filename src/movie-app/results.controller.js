@@ -3,9 +3,9 @@
     angular.module('movieApp')
         .controller('ResultsController', ResultsController);
 
-    ResultsController.$inject = ['OmdbApi', '$location'];
+    ResultsController.$inject = ['OmdbApi', '$location', '$exceptionHandler'];
 
-    function ResultsController(OmdbApi, $location) {
+    function ResultsController(OmdbApi, $location, $exceptionHandler) {
         var vm = this;
 
         vm.query = $location.search().q;
@@ -17,8 +17,8 @@
             .then(function(results) {
                 vm.results = results;
             })
-            .catch(function() {
-                vm.error = 'An error ocurred during the search';
+            .catch(function(e) {
+                 $exceptionHandler(e);
             });
 
         function clicked(simpleMovieData) {
