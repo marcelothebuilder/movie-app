@@ -7,11 +7,15 @@ describe('Results controller', function() {
     var $rootScope;
     var $location;
     var OmdbApi;
+    var $log;
 
     beforeEach(module('omdb'));
     beforeEach(module('movieApp'));
     beforeEach(module(function($exceptionHandlerProvider) {
         $exceptionHandlerProvider.mode('log');
+    }));
+    beforeEach(module(function($logProvider) {
+        $logProvider.debugEnabled(true);
     }));
 
     beforeEach(function populateResults() {
@@ -41,13 +45,16 @@ describe('Results controller', function() {
         };
     });
 
-    beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _OmdbApi_, _$location_, _$exceptionHandler_) {
+    beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _OmdbApi_, _$location_, _$exceptionHandler_, _$log_) {
         $controller = _$controller_;
         $q = _$q_;
         $rootScope = _$rootScope_;
         OmdbApi = _OmdbApi_;
         $location = _$location_;
         $exceptionHandler = _$exceptionHandler_;
+        $log = _$log_;
+
+        $log.reset();
     }));
 
     it('should load search results', function() {
@@ -70,6 +77,29 @@ describe('Results controller', function() {
 
         expect(ctrl.results[0].Title).toBe(results.Search[0].Title);
         expect(OmdbApi.search).toHaveBeenCalledWith('star wars');
+    });
+
+    it('should print to log the initial query', function() {
+        spyOn(OmdbApi, 'search').and.callFake(function() {
+            return $q.resolve(results.Search);
+        });
+
+        spyOn($location, 'search').and.callFake(function() {
+            return {
+                q: 'star wars'
+            };
+        });
+
+        var ctrl = $controller('ResultsController', {
+            OmdbApi: OmdbApi,
+            $location: $location,
+            $log: $log
+        });
+
+        $rootScope.$apply();
+
+        expect($log.debug.logs[0]).toEqual(['Results controller loaded with query [star wars]']);
+        expect($log.debug.logs[1]).toEqual(['Data returned for the query: ', results.Search]);
     });
 
     it('should have an error message set in case of search failure', function() {
