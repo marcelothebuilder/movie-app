@@ -39,4 +39,14 @@ describe('Search controller', function() {
         $timeout.flush();
         expect($location.url()).toBe('/results?q=star%20wars');
     });
+
+    it("should keep the button disabled if the query is empty", function() {
+        $this.query = '';
+        expect($this.isInvalidQuery()).toBeTruthy();
+    });
+
+    it("should not keep the button disabled if the query is not empty", function() {
+        $this.query = 'blahblah';
+        expect($this.isInvalidQuery()).toBeFalsy();
+    });
 });

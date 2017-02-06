@@ -2,7 +2,7 @@
     <div class="input-group">
         <input type="text" class="form-control" ng-model="vm.query" ng-change="vm.searchInputChanged()" placeholder="Search for a movie">
         <span class="input-group-btn">
-            <button type="button" name="button" class="btn btn-default" ng-click="vm.search()">Go!</button>
+            <button type="button" name="button" class="btn btn-default" ng-click="vm.search()" ng-disabled="vm.isInvalidQuery()">Go!</button>
         </span>
     </div>
 </form>

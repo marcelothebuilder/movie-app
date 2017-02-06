@@ -2,7 +2,7 @@ describe('movie search field component', function() {
     var $rootScope;
     var $compile;
 
-    beforeEach(function () {
+    beforeEach(function() {
         module('movieApp');
         module('templates');
     });
@@ -20,9 +20,16 @@ describe('movie search field component', function() {
         expect(element.html().trim()).toContain('button');
     });
 
-    it('should have a placeholder with the text Search for a movie', function () {
-      var element = $compile('<movie-search></movie-search>')($rootScope);
-      $rootScope.$digest();
-      expect(element.html().trim()).toContain('placeholder="Search for a movie"');
+    it('should have a placeholder with the text Search for a movie', function() {
+        var element = $compile('<movie-search></movie-search>')($rootScope);
+        $rootScope.$digest();
+        expect(element.html().trim()).toContain('placeholder="Search for a movie"');
+    });
+
+    it('should have the button disabled if the text is empty', function() {
+        var element = $compile('<movie-search></movie-search>')($rootScope);
+        $rootScope.$digest();
+        var disabled = element[0].querySelector('button').getAttribute('disabled');
+        expect(disabled).toBeTruthy();
     });
 });

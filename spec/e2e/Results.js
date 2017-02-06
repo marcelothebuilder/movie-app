@@ -1,11 +1,17 @@
 describe('Results page', function() {
     describe('at home page', function() {
+        beforeEach(function() {
+            browser.get('http://localhost:3000/#!/');
+
+            browser.waitForAngular();
+        });
+
+        it('should keep the Go! button disabled if the search field is empty', function() {
+            expect(element(by.buttonText('Go!')).getAttribute('disabled')).toBeTruthy();
+        });
+
         describe('when searching for the word Star', function() {
             beforeEach(function() {
-                browser.get('http://localhost:3000/#!/');
-
-                browser.waitForAngular();
-
                 element(by.model('vm.query')).sendKeys('Star');
             });
 
