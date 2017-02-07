@@ -1,7 +1,7 @@
 describe('Home page', function() {
     describe('when loaded', function() {
         it('should show pokémon movie as the first popular movie', function() {
-            browser.get('http://localhost:3000/#!/');
+            browser.get('/');
 
             browser.waitForAngular();
 

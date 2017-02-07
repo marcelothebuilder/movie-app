@@ -1,7 +1,7 @@
 describe('Results page', function() {
     describe('at home page', function() {
         beforeEach(function() {
-            browser.get('http://localhost:3000/#!/');
+            browser.get('/');
 
             browser.waitForAngular();
         });
