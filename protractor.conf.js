@@ -10,6 +10,8 @@ exports.config = {
     },
     capabilities: {
          'browserName': 'chrome',
-         'chromeOptions': { args: ['--test-type', 'show-fps-counter=true'] }
+         'chromeOptions': { args: ['--test-type', 'show-fps-counter=true'] },
+         'shardTestFiles': true,
+         'maxInstances': 5
     }
 };
